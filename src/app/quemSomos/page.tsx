@@ -1,9 +1,8 @@
-import Image from "next/image";
-
-export default function Home2() {
+export default function Sobre() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div><h1>Pagina principal</h1>
+      <div><h1>JP System Ltda</h1>
+      <h2>Quem somos</h2>
       </div>
     </main>
   );

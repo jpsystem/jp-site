@@ -3,20 +3,23 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { AiFillAlert } from "react-icons/ai";
 import Image from "next/image";
-import { BsTelephoneInbound } from "react-icons/bs";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import {
+  BsChevronLeft,
+  BsChevronRight,
+  BsTelephoneInbound,
+} from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import Image1 from "@/app/_componentes/Imagemdenuvem.jpg";
 import Image2 from "@/app/_componentes/Saas.png";
-import BannerImage from "@/app/_componentes/Imagemdenuvem.jpg";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -25,6 +28,14 @@ export default function Home() {
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   const onSelect = useCallback(() => {
     if (emblaApi) {
@@ -44,56 +55,75 @@ export default function Home() {
     };
   }, [emblaApi, onSelect]);
 
-  const slides = [Image1, Image2]; // Use as imagens importadas
+  const slides = [
+    { src: Image1, text: "Texto para a imagem 1", buttonLabel: "Saiba mais" },
+    { src: Image2, text: "Texto para a imagem 2", buttonLabel: "Saiba mais" },
+  ]; // Use as imagens importadas
 
   return (
-    <main className="flex min-h-screen flex-col mt-2">
+    <main className="flex min-h-screen flex-col">
       {/* Começo do carousel */}
       <div
-        className="relative w-[calc(80%-40px)] px-4 mx-auto border-2 border-slate-900"
-        style={{ marginBottom: "calc(50px + 10vh)" }}
+        className="relative w-full px-4 mx-auto overflow-hidden"
+        style={{ marginBottom: "50px" }}
       >
         <div className="embla" ref={emblaRef}>
           <div className="embla__container flex">
-            {slides.map((src, index) => (
+            {slides.map((slide, index) => (
               <div
                 key={index}
-                className="flex flex-shrink-0 w-full h-[300px] relative"
+                className="relative flex flex-shrink-0 w-full h-[500px]"
               >
                 <Image
-                  src={src}
-                  alt={`Slide ${index}`}
+                  src={slide.src}
+                  alt={`Slide ${index + 1}`}
                   fill
                   style={{ objectFit: "cover" }}
                   sizes="100vw"
                 />
+                <div className="absolute inset-0 flex flex-col justify-center items-end p-6">
+                  <div className="p-4">
+                    <h2 className="text-2xl font-bold mb-4 text-black">
+                      {slide.text}
+                    </h2>
+                    <div className="flex items-center mt-6 mb-6">
+                      <span className="text-2xl text-sky-900 mr-4 relative ml-6">
+                        <div className="absolute left-full top-1/2 transform -translate-y-1/2 mt-0.5 ml-4 h-1 w-10 bg-sky-800" />
+                      </span>
+                    </div>
+                    <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
+                      {slide.buttonLabel}
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-          <button
-            className="absolute top-1/2 left-8 transform -translate-y-1/2 z-10 p-2 text-2xl text-black rounded-full"
-            onClick={() => emblaApi && emblaApi.scrollPrev()}
-            aria-label="Previous slide"
-          >
-            &lt;
-          </button>
-          <button
-            className="absolute top-1/2 right-8 transform -translate-y-1/2 z-10 p-2 text-2xl text-black rounded-full"
-            onClick={() => emblaApi && emblaApi.scrollNext()}
-            aria-label="Next slide"
-          >
-            &gt;
-          </button>
         </div>
+        {/* botões de nav do carrousel */}
+        {/* <button
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2"
+          onClick={scrollPrev}
+          aria-label="Slide anterior"
+        >
+          <BsChevronLeft className="h-5 w-5 text-sky-600" />
+        </button>
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2"
+          onClick={scrollNext}
+          aria-label="Próximo slide"
+        >
+          <BsChevronRight className="h-5 w-5 text-sky-600" />
+        </button> */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {slides.map((_, index) => (
             <button
               key={index}
               type="button"
               className={`h-3 w-3 rounded-full ${
-                index === selectedIndex ? "bg-orange-500" : "bg-gray-300"
+                index === selectedIndex ? "bg-sky-500" : "bg-gray-300"
               }`}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={`Ir para o slide ${index + 1}`}
               onClick={() => emblaApi && emblaApi.scrollTo(index)}
             />
           ))}
@@ -101,13 +131,13 @@ export default function Home() {
       </div>
       {/* Fim do carousel */}
       {/* Começo Seção conteúdo */}
-      <div className="border-2 border-slate-800 m-6 bg-orange-50">
-        <div className="flex flex-row items-center justify-between ml-12 mr-6 mt-11 mb-6">
+      <div className="border border-slate-300 rounded-lg m-6 p-6 bg-sky-50 shadow-lg">
+        <div className="flex flex-row items-center justify-between space-x-6">
           <div className="flex flex-col w-1/2">
-            <h1 className="text-orange-900 text-5xl text-left">
+            <h1 className="text-sky-900 text-4xl font-bold mb-4">
               What is Lorem Ipsum?
             </h1>
-            <span className="mt-6 text-left mr-6 text-orange-800">
+            <p className="text-sky-800 leading-relaxed">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -118,95 +148,130 @@ export default function Home() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-            </span>
+            </p>
           </div>
-          <div className="relative border-2 border-slate-800 shadow-lg rounded-lg overflow-hidden w-1/3 h-[300px] mr-6">
+          <div className="relative w-1/3 h-[300px] rounded-lg overflow-hidden shadow-md">
             <Image
               src={Image1}
-              alt="Imagem"
+              alt="Imagem descritiva"
               className="object-cover w-full h-full"
             />
           </div>
         </div>
-        <div className="flex items-center mt-6 mb-6">
-          <span className="text-2xl text-orange-900 mr-4 relative ml-6">
-            Divisor
-            <div className="absolute left-full top-1/2 transform -translate-y-1/2 mt-0.5 ml-4 h-1 w-10 bg-orange-800" />
-          </span>
-        </div>
-        <div className="mb-4">
-          <div className="flex flex-row flex-wrap gap-6 justify-center mr-6">
-            <Card className="w-[350px]">
-              <CardHeader>
-                <div className="flex flex-col space-y-1.5"></div>
-                <Image
-                  src={Image1}
-                  alt="Imagem"
-                  className="object-cover w-full h-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <CardTitle>Titulo Card</CardTitle>
-                <CardDescription>Conteúdo Card</CardDescription>
-              </CardContent>
-              <CardFooter className="flex justify-between"></CardFooter>
-            </Card>
-            <Card className="w-[350px]">
-              <CardHeader>
-                <div className="flex flex-col space-y-1.5"></div>
-                <Image
-                  src={Image1}
-                  alt="Imagem"
-                  className="object-cover w-full h-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <CardTitle>Titulo Card</CardTitle>
-                <CardDescription>Conteúdo Card</CardDescription>
-              </CardContent>
-              <CardFooter className="flex justify-between"></CardFooter>
-            </Card>
-            <Card className="w-[350px]">
-              <CardHeader>
-                <div className="flex flex-col space-y-1.5"></div>
-                <Image
-                  src={Image1}
-                  alt="Imagem"
-                  className="object-cover w-full h-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <CardTitle>Titulo Card</CardTitle>
-                <CardDescription>Conteúdo Card</CardDescription>
-              </CardContent>
-              <CardFooter className="flex justify-between"></CardFooter>
-            </Card>
+      </div>
+      {/* Fim Seção conteúdo */}
+      {/* Seção com os Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-6">
+        {/* <!-- Card 1 --> */}
+        <Card className="relative group border border-slate-300 rounded-lg shadow-lg overflow-hidden">
+          {/* Imagem do Card */}
+          <CardHeader className="p-0">
+            <Image
+              src={Image1}
+              alt="Imagem descritiva"
+              className="object-cover w-full h-full"
+            />
+          </CardHeader>
+          {/* Conteúdo sobreposto ao passar o mouse */}
+          <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
+            <BsChevronLeft className="text-4xl mb-4" />
+            <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
+            <p className="text-center mb-4">
+              Auxiliamos a sua empresa a tomar a melhor decisão referente a
+              tecnologia, propondo soluções inovadoras e aderentes ao seu
+              negócio.
+            </p>
+            <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
+              Conheça
+            </button>
+          </div>
+          {/* Conteúdo do Card */}
+          <CardContent className="p-4">
+            <CardTitle className="text-2xl font-bold mb-4 text-center">
+              Consultoria de TI
+            </CardTitle>
+            <p className="text-center mb-4">texto vai ficar aqui</p>
+          </CardContent>
+          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center">
+            <div className="flex items-center space-x-4 w-full">
+              <div className="flex items-center space-x-2">
+                <AiFillAlert className="text-4xl" />
+                <div className="h-8 w-px bg-sky-200 mx-2" />
+                {/* Divisor vertical */}
+                <span className="text-2xl font-semibold pl-24">
+                  Título do Alerta
+                </span>
+              </div>
+            </div>
+          </CardFooter>
+        </Card>
+
+        {/* <!-- Card 2 --> */}
+        <Card className="relative group border border-slate-300 rounded-lg shadow-lg overflow-hidden flex flex-col">
+          {/* Conteúdo sobreposto ao passar o mouse */}
+          <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
+            <BsChevronLeft className="text-4xl mb-4" />
+            <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
+            <p className="text-center mb-4">
+              Auxiliamos a sua empresa a tomar a melhor decisão referente a
+              tecnologia, propondo soluções inovadoras e aderentes ao seu
+              negócio.
+            </p>
+            <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
+              Conheça
+            </button>
+          </div>
+          {/* Conteúdo do Card */}
+          <CardContent className="p-4 flex-grow">
+            <Image
+              src={Image1}
+              alt="Imagem descritiva"
+              className="object-cover w-full h-60" /* Ajuste a altura da imagem */
+            />
+          </CardContent>
+          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center">
+            <div className="flex items-center space-x-4 w-full">
+              <div className="flex items-center space-x-2">
+                <AiFillAlert className="text-4xl" />
+                <div className="h-8 w-px bg-sky-200 mx-2" />
+                <span className="text-2xl font-semibold pl-24">
+                  Título do Alerta
+                </span>
+              </div>
+            </div>
+          </CardFooter>
+        </Card>
+      </div>
+      {/* Fim Cartões de Conteúdo */}
+      {/* Banner de Contato */}
+      <div className="flex flex-col sm:flex-row items-center justify-between p-4 shadow-lg rounded-lg mt-6 mb-8 mx-auto w-full sm:w-[60%] bg-sky-50 border border-sky-900">
+        <div className="flex items-center w-full sm:w-1/2 ml-12">
+          <div className="flex items-center justify-center w-12 h-12 bg-sky-700 rounded-full mr-3">
+            <BsTelephoneInbound className="text-white w-6 h-6" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-gray-600 text-sm">
+              Entre em contato conosco
+            </span>
+            <span className="text-sky-900 text-xl font-bold">
+              (11) 95481-2706
+            </span>
           </div>
         </div>
-      </div>
-      {/* Banner Contato */}
-      <div className="flex items-center p-4 shadow-lg rounded-lg mt-6 mx-6 w-[50%] bg-orange-50 border-2 border-slate-900 justify-center mb-4">
-        <div className="flex items-center justify-center w-12 h-12 bg-red-500 rounded-full mr-4">
-          <BsTelephoneInbound className="text-white w-6 h-6" />
-        </div>
-        <div className="flex flex-col">
-          <span className="text-gray-700 text-sm">
-            Entre em contato conosco
-          </span>
-          <span className="text-blue-900 text-2xl font-bold mr-6">
-            (11)95481-2706
-          </span>
-        </div>
-        <div className="flex items-center justify-center w-12 h-12 bg-red-500 rounded-full mr-4">
-          <MdEmail className="text-white w-6 h-6" />
-        </div>
-        <div className="flex flex-col">
-          <span className="text-gray-700 text-sm">
-            Entre em contato conosco
-          </span>
-          <span className="text-blue-900 text-2xl font-bold">
-            jpsystem@gmail.com
-          </span>
+        <div className="w-px h-12 bg-gray-300 mx-4 sm:mx-6" />
+        {/* Divisor vertical */}
+        <div className="flex items-center w-full sm:w-1/2 ml-12">
+          <div className="flex items-center justify-center w-12 h-12 bg-sky-700 rounded-full mr-3">
+            <MdEmail className="text-white w-6 h-6" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-gray-600 text-sm">
+              Envie um e-mail para nós
+            </span>
+            <span className="text-sky-900 text-xl font-bold">
+              comercial@jpsystemltda.com.br
+            </span>
+          </div>
         </div>
       </div>
     </main>

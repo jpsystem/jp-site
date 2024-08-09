@@ -10,9 +10,8 @@ import { BsTelephoneInbound } from "react-icons/bs";
 import { AiOutlineRocket } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { AiFillCar } from "react-icons/ai";
-import Image1 from "/public/imagens/Imagemdenuvem.jpg";
-import Image2 from "/public/imagens/Saas.png";
-
+import Image1 from "/public/imagens/Teste.jpg";
+import Image2 from "/public/imagens/Teste1.jpg";
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -57,7 +56,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       {/* Começo do carousel */}
       <div
-        className="relative w-full px-4 mx-auto overflow-hidden"
+        className="relative w-full mx-auto overflow-hidden"
         style={{ marginBottom: "50px" }}
       >
         <div className="embla" ref={emblaRef}>
@@ -124,7 +123,7 @@ export default function Home() {
       </div>
       {/* Fim do carousel */}
       {/* Começo Seção conteúdo */}
-      <div className="border border-slate-300 rounded-lg m-6 p-6 bg-sky-50 shadow-lg">
+      <div className="border border-slate-300 rounded-lg m-6 p-6 bg-sky-50 shadow-lg mb-12">
         <div className="flex flex-row items-center justify-between space-x-6">
           <div className="flex flex-col w-1/2">
             <h1 className="text-sky-900 text-4xl font-bold mb-4">
@@ -154,41 +153,41 @@ export default function Home() {
       </div>
       {/* Fim Seção conteúdo */}
       {/* Seção com os Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-6 mb-6">
         <CustomCard
           imageSrc="/imagens/Pessoas3.jpg" //Imagem do Card
           imageAlt="Serviços de Cloud" //ALT da imagem
           title="Serviços de Cloud" //Titulo do card
           description="Migramos e gerenciamos sua infraestrutura na nuvem para aumentar a eficiência e reduzir custos." //Descrição do Card
           buttonText="Saiba Mais" //Texto do botão
-          buttonUrl="#"//URL do botão
-          icon={<AiFillBank className="text-4xl mb-4"/>}//Icone do Card
+          buttonUrl="#" //URL do botão
+          icon={<AiFillBank className="text-4xl mb-4" />} //Icone do Card
         />
         <CustomCard
           imageSrc="/imagens/Pessoas.jpg" //Imagem do Card
-          imageAlt="Serviços de Cloud"//ALT da imagem
-          title="Serviços de Carros"//Titulo do card
-          description="Migramos e gerenciamos seu Carro apenas de brincadeira hahahaha."//Descrição do Card
-          buttonText="Eita lele"//Texto do botão
-          buttonUrl="#"//URL do botão
-          icon={<AiFillCar className="text-4xl mb-4"/>}//Icone do Card
+          imageAlt="Serviços de Cloud" //ALT da imagem
+          title="Serviços de Carros" //Titulo do card
+          description="Migramos e gerenciamos seu Carro apenas de brincadeira hahahaha." //Descrição do Card
+          buttonText="Eita lele" //Texto do botão
+          buttonUrl="#" //URL do botão
+          icon={<AiFillCar className="text-4xl mb-4" />} //Icone do Card
         />
         <CustomCard
           imageSrc="/imagens/Pessoas2.jpg" //Imagem do Card
-          imageAlt="Serviços de Cloud"//ALT da imagem
-          title="Serviços de Foguetes"//Titulo do card
-          description="Migramos e gerenciamos seu CFoguete apenas de brincadeira hahahaha."//Descrição do Card
-          buttonText="Clica Aqui"//Texto do botão
-          buttonUrl="#"//URL do botão
-          icon={<AiOutlineRocket className="text-4xl mb-4"/>}//Icone do Card
+          imageAlt="Serviços de Cloud" //ALT da imagem
+          title="Serviços de Foguetes" //Titulo do card
+          description="Migramos e gerenciamos seu Foguete apenas de brincadeira hahahaha." //Descrição do Card
+          buttonText="Clica Aqui" //Texto do botão
+          buttonUrl="#" //URL do botão
+          icon={<AiOutlineRocket className="text-4xl mb-4" />} //Icone do Card
         />
       </div>
       {/* Fim Seção dos Cards*/}
       {/* Banner de Contato */}
       <div className="flex flex-col sm:flex-row items-center justify-between p-4 shadow-lg rounded-lg mt-6 mb-8 mx-auto w-full sm:w-[60%] bg-sky-50 border border-sky-900">
-        <div className="flex items-center w-full sm:w-1/2 ml-12">
+        <div className="flex items-center w-full sm:w-1/2 ml-24">
           <div className="flex items-center justify-center w-12 h-12 bg-sky-700 rounded-full mr-3">
-            <BsTelephoneInbound className="text-white w-6 h-6"/>
+            <BsTelephoneInbound className="text-white w-6 h-6" />
           </div>
           <div className="flex flex-col">
             <span className="text-gray-600 text-sm">
@@ -209,7 +208,7 @@ export default function Home() {
             <span className="text-gray-600 text-sm">
               Envie um e-mail para nós
             </span>
-            <span className="text-sky-900 text-xl font-bold">
+            <span className="text-sky-900 text-xl font-bold mr-6">
               comercial@jpsystemltda.com.br
             </span>
           </div>

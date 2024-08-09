@@ -33,9 +33,9 @@ const CustomCard: React.FC<CustomCardProps> = ({
         />
         <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
           <h2 className="text-2xl font-bold mb-4">{title}</h2>
-          <p className="text-center mb-4">{description}</p>
+          <p className="text-center mb-4 mx-4">{description}</p>
           <Link href={buttonUrl}>
-            <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
+            <button className="px-4 py-2 bg-sky-700 rounded-lg hover:bg-sky-700 text-white">
               {buttonText}
             </button>
           </Link>

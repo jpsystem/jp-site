@@ -3,13 +3,16 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { AiFillAlert } from "react-icons/ai";
 import Image from "next/image";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import CustomCard from "@/app/_componentes/conteudo/Card";
+import { AiFillBank } from "react-icons/ai";
 import { BsTelephoneInbound } from "react-icons/bs";
+import { AiOutlineRocket } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
-import Image1 from "@/app/_componentes/imagens/Imagemdenuvem.jpg";
-import Image2 from "@/app/_componentes/imagens/Saas.png";
+import { AiFillCar } from "react-icons/ai";
+import Image1 from "/public/imagens/Imagemdenuvem.jpg";
+import Image2 from "/public/imagens/Saas.png";
+
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -152,45 +155,40 @@ export default function Home() {
       {/* Fim Seção conteúdo */}
       {/* Seção com os Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-6">
-        <Card className="relative group border border-slate-300 rounded-lg shadow-lg overflow-hidden">
-          <CardContent className="relative p-0 h-[calc(100%-4rem)] transition-all duration-300 ease-in-out group-hover:h-full">
-            <Image
-              src={Image1}
-              alt="Imagem descritiva"
-              className="object-cover w-full h-full"
-            />
-            <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
-              <AiFillAlert className="text-4xl mb-4" />
-              <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
-              <p className="text-center mb-4">
-                Auxiliamos a sua empresa a tomar a melhor decisão referente a
-                tecnologia, propondo soluções inovadoras e aderentes ao seu
-                negócio.
-              </p>
-              <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
-                Conheça
-              </button>
-            </div>
-          </CardContent>
-          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center transition-all duration-300 ease-in-out group-hover:h-0 group-hover:opacity-0">
-            <div className="flex items-center space-x-4 w-full">
-              <div className="flex items-center space-x-2">
-                <AiFillAlert className="text-4xl" />
-                <div className="h-8 w-px bg-sky-200 mx-2" />
-                <span className="text-2xl font-semibold pl-24">
-                  Título do Alerta
-                </span>
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
+        <CustomCard
+          imageSrc="/imagens/Pessoas3.jpg" //Imagem do Card
+          imageAlt="Serviços de Cloud" //ALT da imagem
+          title="Serviços de Cloud" //Titulo do card
+          description="Migramos e gerenciamos sua infraestrutura na nuvem para aumentar a eficiência e reduzir custos." //Descrição do Card
+          buttonText="Saiba Mais" //Texto do botão
+          buttonUrl="#"//URL do botão
+          icon={<AiFillBank className="text-4xl mb-4"/>}//Icone do Card
+        />
+        <CustomCard
+          imageSrc="/imagens/Pessoas.jpg" //Imagem do Card
+          imageAlt="Serviços de Cloud"//ALT da imagem
+          title="Serviços de Carros"//Titulo do card
+          description="Migramos e gerenciamos seu Carro apenas de brincadeira hahahaha."//Descrição do Card
+          buttonText="Eita lele"//Texto do botão
+          buttonUrl="#"//URL do botão
+          icon={<AiFillCar className="text-4xl mb-4"/>}//Icone do Card
+        />
+        <CustomCard
+          imageSrc="/imagens/Pessoas2.jpg" //Imagem do Card
+          imageAlt="Serviços de Cloud"//ALT da imagem
+          title="Serviços de Foguetes"//Titulo do card
+          description="Migramos e gerenciamos seu CFoguete apenas de brincadeira hahahaha."//Descrição do Card
+          buttonText="Clica Aqui"//Texto do botão
+          buttonUrl="#"//URL do botão
+          icon={<AiOutlineRocket className="text-4xl mb-4"/>}//Icone do Card
+        />
       </div>
       {/* Fim Seção dos Cards*/}
       {/* Banner de Contato */}
       <div className="flex flex-col sm:flex-row items-center justify-between p-4 shadow-lg rounded-lg mt-6 mb-8 mx-auto w-full sm:w-[60%] bg-sky-50 border border-sky-900">
         <div className="flex items-center w-full sm:w-1/2 ml-12">
           <div className="flex items-center justify-center w-12 h-12 bg-sky-700 rounded-full mr-3">
-            <BsTelephoneInbound className="text-white w-6 h-6" />
+            <BsTelephoneInbound className="text-white w-6 h-6"/>
           </div>
           <div className="flex flex-col">
             <span className="text-gray-600 text-sm">

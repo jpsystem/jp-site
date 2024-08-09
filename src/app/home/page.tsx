@@ -5,21 +5,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { AiFillAlert } from "react-icons/ai";
 import Image from "next/image";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import {
-  BsChevronLeft,
-  BsChevronRight,
-  BsTelephoneInbound,
-} from "react-icons/bs";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { BsTelephoneInbound } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
-import Image1 from "@/app/_componentes/Imagemdenuvem.jpg";
-import Image2 from "@/app/_componentes/Saas.png";
+import Image1 from "@/app/_componentes/imagens/Imagemdenuvem.jpg";
+import Image2 from "@/app/_componentes/imagens/Saas.png";
 
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -29,13 +19,13 @@ export default function Home() {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+  // const scrollPrev = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollPrev();
+  // }, [emblaApi]);
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  // const scrollNext = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollNext();
+  // }, [emblaApi]);
 
   const onSelect = useCallback(() => {
     if (emblaApi) {
@@ -162,74 +152,27 @@ export default function Home() {
       {/* Fim Seção conteúdo */}
       {/* Seção com os Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-6">
-        {/* <!-- Card 1 --> */}
         <Card className="relative group border border-slate-300 rounded-lg shadow-lg overflow-hidden">
-          {/* Imagem do Card */}
-          <CardHeader className="p-0">
+          <CardContent className="relative p-0 h-[calc(100%-4rem)] transition-all duration-300 ease-in-out group-hover:h-full">
             <Image
               src={Image1}
               alt="Imagem descritiva"
               className="object-cover w-full h-full"
             />
-          </CardHeader>
-          {/* Conteúdo sobreposto ao passar o mouse */}
-          <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
-            <BsChevronLeft className="text-4xl mb-4" />
-            <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
-            <p className="text-center mb-4">
-              Auxiliamos a sua empresa a tomar a melhor decisão referente a
-              tecnologia, propondo soluções inovadoras e aderentes ao seu
-              negócio.
-            </p>
-            <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
-              Conheça
-            </button>
-          </div>
-          {/* Conteúdo do Card */}
-          <CardContent className="p-4">
-            <CardTitle className="text-2xl font-bold mb-4 text-center">
-              Consultoria de TI
-            </CardTitle>
-            <p className="text-center mb-4">texto vai ficar aqui</p>
-          </CardContent>
-          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center">
-            <div className="flex items-center space-x-4 w-full">
-              <div className="flex items-center space-x-2">
-                <AiFillAlert className="text-4xl" />
-                <div className="h-8 w-px bg-sky-200 mx-2" />
-                {/* Divisor vertical */}
-                <span className="text-2xl font-semibold pl-24">
-                  Título do Alerta
-                </span>
-              </div>
+            <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
+              <AiFillAlert className="text-4xl mb-4" />
+              <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
+              <p className="text-center mb-4">
+                Auxiliamos a sua empresa a tomar a melhor decisão referente a
+                tecnologia, propondo soluções inovadoras e aderentes ao seu
+                negócio.
+              </p>
+              <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
+                Conheça
+              </button>
             </div>
-          </CardFooter>
-        </Card>
-
-        {/* <!-- Card 2 --> */}
-        <Card className="relative group border border-slate-300 rounded-lg shadow-lg overflow-hidden flex flex-col">
-          {/* Conteúdo sobreposto ao passar o mouse */}
-          <div className="absolute inset-0 bg-sky-600 bg-opacity-60 flex flex-col items-center justify-center text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 z-10">
-            <BsChevronLeft className="text-4xl mb-4" />
-            <h2 className="text-2xl font-bold mb-4">Consultoria de TI</h2>
-            <p className="text-center mb-4">
-              Auxiliamos a sua empresa a tomar a melhor decisão referente a
-              tecnologia, propondo soluções inovadoras e aderentes ao seu
-              negócio.
-            </p>
-            <button className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 text-white">
-              Conheça
-            </button>
-          </div>
-          {/* Conteúdo do Card */}
-          <CardContent className="p-4 flex-grow">
-            <Image
-              src={Image1}
-              alt="Imagem descritiva"
-              className="object-cover w-full h-60" /* Ajuste a altura da imagem */
-            />
           </CardContent>
-          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center">
+          <CardFooter className="bg-gradient-to-r from-sky-800 to-sky-500 text-sky-50 p-4 flex items-center transition-all duration-300 ease-in-out group-hover:h-0 group-hover:opacity-0">
             <div className="flex items-center space-x-4 w-full">
               <div className="flex items-center space-x-2">
                 <AiFillAlert className="text-4xl" />
@@ -242,7 +185,7 @@ export default function Home() {
           </CardFooter>
         </Card>
       </div>
-      {/* Fim Cartões de Conteúdo */}
+      {/* Fim Seção dos Cards*/}
       {/* Banner de Contato */}
       <div className="flex flex-col sm:flex-row items-center justify-between p-4 shadow-lg rounded-lg mt-6 mb-8 mx-auto w-full sm:w-[60%] bg-sky-50 border border-sky-900">
         <div className="flex items-center w-full sm:w-1/2 ml-12">
@@ -259,7 +202,7 @@ export default function Home() {
           </div>
         </div>
         <div className="w-px h-12 bg-gray-300 mx-4 sm:mx-6" />
-        {/* Divisor vertical */}
+        {/* Divisor vertical ^ */}
         <div className="flex items-center w-full sm:w-1/2 ml-12">
           <div className="flex items-center justify-center w-12 h-12 bg-sky-700 rounded-full mr-3">
             <MdEmail className="text-white w-6 h-6" />

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Logo from "../logo.png";
+import Logo from "../imagens/logo.png";
 import { SocialIcon } from "react-social-icons";
 
 const Rodape = () => {

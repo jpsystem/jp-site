@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Logo from "../logo.png";
+import Logo from "../imagens/logo.png";
 import { SocialIcon } from "react-social-icons";
 import { Button } from "@/components/ui/button";
 import { HiOutlineMail } from "react-icons/hi";
